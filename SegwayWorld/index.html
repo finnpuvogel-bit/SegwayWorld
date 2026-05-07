@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SegwayWorld | Tuning & Community</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+
+    <header>
+        <div class="container">
+            <div class="logo">SEGWAY<span>WORLD</span></div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#shop">Tuning-Shop</a>
+                <a href="https://discord.gg/byXcnzeVdQ" class="discord-btn" target="_blank">Join Discord</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="animate-title">SPEED. POWER. CONTROL.</h1>
+            <p>Die Nr. 1 Community für Ninebot & Segway Mods.</p>
+            <button onclick="copyIP()" class="main-btn">Discord Link kopieren</button>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stat-item">
+            <span class="num" data-val="1200">0</span>
+            <p>Mitglieder</p>
+        </div>
+        <div class="stat-item">
+            <span class="num" data-val="45">0</span>
+            <p>Custom Firmwares</p>
+        </div>
+        <div class="stat-item">
+            <span class="num" data-val="100">0</span>
+            <p>Tuning-Anleitungen</p>
+        </div>
+    </section>
+
+    <section id="shop" class="container">
+        <h2 class="section-title">📦 Tuning-Angebote & Downloads</h2>
+        <div class="tool-grid">
+            
+            <div class="tool-card free">
+                <span class="badge-free">KOSTENLOS</span>
+                <h3>GT3 Dash Mods</h3>
+                <p>Optik-Upgrade für dein Display.</p>
+                <ul class="mod-list">
+                    <li>✅ F3 Pro GT3 Style</li>
+                    <li>✅ G3 Max GT3 Style</li>
+                </ul>
+                <button class="main-btn" onclick="alert('Download im Discord verfügbar!')">Download</button>
+            </div>
+
+            <div class="tool-card premium">
+                <span class="badge-premium">5,00 €</span>
+                <h3>F3 Pro Power Mode</h3>
+                <p>Maximale Performance.</p>
+                <ul class="mod-list">
+                    <li>🚀 50 km/h Datei</li>
+                    <li>👮 Polizei Mode (Tarnung)</li>
+                </ul>
+                <button class="buy-btn" onclick="openPurchase()">Jetzt anfragen</button>
+            </div>
+
+            <div class="tool-card ghost">
+                <span class="badge-ghost">LIMITIERT</span>
+                <h3>Stealth Mods</h3>
+                <p>Das unsichtbare Tuning.</p>
+                <ul class="mod-list">
+                    <li>👻 G3 Max Ghost Mode</li>
+                    <li>⚡ ZT3 Pro Unlock</li>
+                </ul>
+                <button class="main-btn" onclick="openPurchase()">Details im Discord</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SegwayWorld - Ride Safe & Fast</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
