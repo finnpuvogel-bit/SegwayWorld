@@ -43,6 +43,80 @@ nav a:hover { color: var(--primary); }
 
 .animate-title { font-size: 3rem; letter-spacing: 3px; color: white; }
 
+.connection-section {
+    padding: 40px 5% 0;
+}
+
+.connection-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px;
+    background: linear-gradient(135deg, #151515, #0d1d20);
+    border: 1px solid #23565c;
+    border-radius: 15px;
+    box-shadow: 0 0 24px rgba(0, 242, 255, 0.08);
+}
+
+.eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.connection-card h2, .power-modal h2 {
+    margin: 0 0 8px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.connection-card p, .power-modal p { color: #b9c6c8; }
+.connection-card p { margin: 0; }
+.connect-btn { width: auto; min-width: 190px; }
+.connect-btn:disabled { cursor: wait; opacity: 0.6; }
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(6px);
+}
+
+.modal-backdrop[hidden] { display: none; }
+
+.power-modal {
+    position: relative;
+    width: min(100%, 440px);
+    padding: 34px;
+    border: 1px solid var(--primary);
+    border-radius: 18px;
+    background: #101818;
+    box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
+    text-align: center;
+}
+
+.power-modal p { line-height: 1.6; margin: 18px 0 24px; }
+.modal-icon { margin-bottom: 16px; color: var(--primary); font-size: 2rem; }
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: 0;
+    background: transparent;
+    color: #b9c6c8;
+    cursor: pointer;
+    font-size: 1.8rem;
+    line-height: 1;
+}
+.modal-close:hover, .modal-close:focus-visible { color: white; }
+
 .stats-bar {
     display: flex;
     justify-content: space-around;
@@ -90,3 +164,9 @@ nav a:hover { color: var(--primary); }
 .buy-btn { background: #ff9900; color: black; }
 
 footer { text-align: center; padding: 30px; color: #555; }
+
+@media (max-width: 640px) {
+    .connection-card { align-items: stretch; flex-direction: column; }
+    .connect-btn { width: 100%; }
+    .power-modal { padding: 30px 22px; }
+}

@@ -28,6 +28,28 @@
         </div>
     </section>
 
+    <section id="connection" class="connection-section container" aria-labelledby="connection-title">
+        <div class="connection-card">
+            <div>
+                <span class="eyebrow">BLUETOOTH CONTROL</span>
+                <h2 id="connection-title">Scooter verbinden</h2>
+                <p id="connection-status" role="status">Verbinde deinen Ninebot direkt mit SegwayWorld.</p>
+            </div>
+            <button class="main-btn connect-btn" type="button" onclick="connectScooter()">Scooter verbinden</button>
+        </div>
+    </section>
+
+    <div id="power-popup" class="modal-backdrop" role="presentation" hidden>
+        <section class="power-modal" role="dialog" aria-modal="true" aria-labelledby="power-popup-title" aria-describedby="power-popup-message">
+            <button class="modal-close" type="button" aria-label="Hinweis schließen" onclick="closePowerPopup()">&times;</button>
+            <div class="modal-icon" aria-hidden="true">01</div>
+            <span class="eyebrow">VERBINDUNG WIRD BESTÄTIGT</span>
+            <h2 id="power-popup-title">Power-Knopf drücken</h2>
+            <p id="power-popup-message">Bitte jetzt 1x kurz den Power-Knopf am Scooter drücken, um die Verbindung zu bestätigen!</p>
+            <button class="main-btn" type="button" onclick="closePowerPopup()">Verstanden</button>
+        </section>
+    </div>
+
     <section class="stats-bar">
         <div class="stat-item">
             <span class="num" data-val="1200">0</span>
