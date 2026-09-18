@@ -43,7 +43,33 @@
         </div>
     </section>
 
+    <section id="bluetooth-dashboard" class="container bluetooth-dashboard">
+        <h2 class="section-title">Bluetooth Dashboard</h2>
+        <div class="dashboard-card">
+            <div class="dashboard-header">
+                <div>
+                    <h3>Live Tuning (Field Weakening)</h3>
+                    <p>Verbinde deinen Segway und schalte Field Weakening direkt am Fahrzeug.</p>
+                </div>
+                <button id="bluetooth-connect" class="main-btn dashboard-connect" type="button">Bluetooth verbinden</button>
+            </div>
+            <div class="tuning-control">
+                <div>
+                    <strong>Field Weakening</strong>
+                    <span id="tuning-status" class="tuning-status">Standard Modus</span>
+                </div>
+                <label class="switch-label" for="field-weakening-toggle">
+                    <span class="sr-only">Live Tuning (Field Weakening) umschalten</span>
+                    <input id="field-weakening-toggle" type="checkbox" role="switch" disabled>
+                    <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+                </label>
+            </div>
+            <p id="bluetooth-message" class="bluetooth-message" role="status" aria-live="polite">Noch nicht verbunden.</p>
+        </div>
+    </section>
+
     <section id="shop" class="container">
+
         <h2 class="section-title">📦 Tuning-Angebote & Downloads</h2>
         <div class="tool-grid">
             
