@@ -64,6 +64,32 @@
                     <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
                 </label>
             </div>
+            <div class="controller-panel" aria-labelledby="controller-title">
+                <div class="controller-heading">
+                    <div>
+                        <p class="eyebrow">CONTROLLER LINK</p>
+                        <h3 id="controller-title">Pro Controller</h3>
+                        <p>Konfiguriere Field Weakening über den verbundenen E0FF-Controller.</p>
+                    </div>
+                    <span id="controller-state" class="controller-state">Bereit</span>
+                </div>
+                <div class="controller-grid">
+                    <label class="controller-field" for="licenseInput">
+                        Aktivierungscode
+                        <input id="licenseInput" type="text" autocomplete="off" placeholder="z. B. SEGWAY40">
+                        <span id="codeStatus" class="field-hint" aria-live="polite"></span>
+                    </label>
+                    <div class="controller-field">
+                        <label for="fwCurrentSlider">Startstrom <output id="fwCurrentValue">15 A</output></label>
+                        <input id="fwCurrentSlider" type="range" min="5" max="30" value="15">
+                    </div>
+                    <div class="controller-field">
+                        <label for="fwSlopeSlider">Slope <output id="fwSlopeValue">2000</output></label>
+                        <input id="fwSlopeSlider" type="range" min="500" max="5000" step="100" value="2000">
+                    </div>
+                </div>
+                <button id="unlockButton" class="controller-action" type="button" disabled>Pro-Modus aktivieren</button>
+            </div>
             <p id="bluetooth-message" class="bluetooth-message" role="status" aria-live="polite">Noch nicht verbunden.</p>
         </div>
     </section>

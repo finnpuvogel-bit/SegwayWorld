@@ -75,6 +75,24 @@ nav a:hover { color: var(--primary); }
 .tuning-control { margin-top: 28px; padding-top: 22px; border-top: 1px solid #333; }
 .tuning-status { margin-top: 5px; color: #aaa; font-size: 0.9rem; }
 .bluetooth-message { margin: 20px 0 0; color: var(--primary); font-size: 0.9rem; }
+
+.controller-panel { margin-top: 26px; padding: 22px; border: 1px solid #2d4a4d; border-radius: 12px; background: linear-gradient(135deg, rgba(0,242,255,.07), rgba(255,255,255,.02)); }
+.controller-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; }
+.controller-heading h3 { margin: 3px 0 6px; color: white; }
+.controller-heading p:last-child { margin: 0; color: #9caeb0; font-size: .9rem; }
+.eyebrow { margin: 0; color: var(--primary); font: 700 .68rem 'Orbitron', sans-serif; letter-spacing: .14em; }
+.controller-state { padding: 6px 9px; border: 1px solid #396368; border-radius: 999px; color: var(--primary); font-size: .75rem; white-space: nowrap; }
+.controller-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 16px; margin-top: 22px; }
+.controller-field { display: grid; gap: 8px; color: #dbe8e8; font-size: .82rem; }
+.controller-field label { display: flex; justify-content: space-between; gap: 10px; }
+.controller-field input[type='text'] { width: 100%; box-sizing: border-box; padding: 11px 12px; border: 1px solid #355456; border-radius: 7px; background: #0b1112; color: white; font: inherit; }
+.controller-field input[type='range'] { accent-color: var(--primary); width: 100%; }
+.controller-field output { color: var(--primary); font-weight: 700; }
+.field-hint { min-height: 16px; font-size: .75rem; }
+.field-hint.valid { color: #53e0a0; }.field-hint.invalid { color: #ff8f8f; }
+.controller-action { margin-top: 20px; width: 100%; padding: 12px 18px; border: 1px solid var(--primary); border-radius: 7px; background: transparent; color: var(--primary); font-weight: 700; cursor: pointer; }
+.controller-action:not(:disabled):hover { background: var(--primary); color: #061011; }.controller-action:disabled { opacity: .4; cursor: not-allowed; }
+@media (max-width: 700px) { .dashboard-header, .controller-heading { align-items: stretch; flex-direction: column; } .dashboard-connect { width: 100%; }.controller-grid { grid-template-columns: 1fr; } }
 .bluetooth-message.error { color: #ff7b7b; }
 
 .switch-label { position: relative; display: inline-flex; cursor: pointer; }
