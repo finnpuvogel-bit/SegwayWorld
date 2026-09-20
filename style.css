@@ -32,25 +32,14 @@ header {
 nav a { color: white; text-decoration: none; margin-left: 20px; transition: 0.3s; }
 nav a:hover { color: var(--primary); }
 
-.dashboard-home { min-height: calc(100vh - 76px); }
-
 .hero {
-    min-height: 390px;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: radial-gradient(circle at 50% 0%, rgba(0,242,255,.14), transparent 44%), linear-gradient(180deg, #10191a 0%, var(--bg) 100%);
-    border-bottom: 1px solid #19383b;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1605152276897-4f618f831968?q=80&w=2070') center/cover;
 }
-
-.hero-content { max-width: 720px; padding: 64px 24px; }
-.hero-content .eyebrow { margin-bottom: 16px; }
-.hero-content p:not(.eyebrow) { color: #b7c6c7; font-size: 1.05rem; }
-.hero-actions { display: flex; justify-content: center; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
-.hero-btn, .secondary-btn { width: auto; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
-.secondary-btn { padding: 10px 20px; border: 1px solid #3c6669; border-radius: 5px; color: #d9ffff; font-weight: bold; }
-.secondary-btn:hover { border-color: var(--primary); color: var(--primary); }
 
 .animate-title { font-size: 3rem; letter-spacing: 3px; color: white; }
 
