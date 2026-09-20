@@ -21,41 +21,250 @@
         </div>
     </header>
 
-    <div class="browser-notice"><span class="badge-sub">iPhone / Bluefy</span></div>
-
-    <div class="top-stats-bar card">
-        <div class="stat-col"><div class="stat-val">40 A</div><div class="stat-sub">OVERDRIVE</div><div class="stat-val-sm">25 %</div></div>
-        <div class="stat-col"><div class="stat-val">30 A</div></div>
-        <div class="stat-footer-text">Ausgewogen für den Alltag</div>
+    <div class="browser-notice">
+        <span class="badge-sub">iPhone / Bluefy</span>
     </div>
 
     <main class="dashboard-grid">
+        <!-- Field Weakening (FW) -->
         <section class="card">
-            <div class="card-header-with-badge"><h2>Field Weakening Config</h2><span class="fw-badge">FW</span></div>
+            <h2>Field Weakening (FW)</h2>
+            <p class="card-desc">Feldschwächungs-Strom für maximale Höchstgeschwindigkeit anpassen.</p>
+            
+            <div class="control-group">
+                <div class="label-row">
+                    <label for="iqfw-range">iqFW (Feldschwächungsstrom)</label>
+                    <span id="iqfw-val" class="val-display">30 A</span>
+                </div>
+                <input type="range" id="iqfw-range" min="0" max="100" value="30">
+                <p class="field-hint">Empfohlen: 25A - 35A für Standardmotoren. Werte über 40A bis 130A erfordern verstärkte Phasenstecker und Kühlung!</p>
+            </div>
+
+            <div class="control-group">
+                <div class="label-row">
+                    <label for="engage-range">Engage Speed (Einsatz-Geschwindigkeit)</label>
+                    <span id="engage-val" class="val-display">22 km/h</span>
+                </div>
+                <input type="range" id="engage-range" min="0" max="60" value="22">
+                <p class="field-hint">Geschwindigkeitsschwelle, ab der Field Weakening aktiv eingreift.</p>
+            </div>
+
+            <div class="control-group">
+                <div class="label-row">
+                    <label for="scale-range">Scale Multiplier (Ramp-up)</label>
+                    <span id="scale-val" class="val-display">1200</span>
+                </div>
+                <input type="range" id="scale-range" min="100" max="3000" step="50" value="1200">
+                <p class="field-hint">Intensitätsfaktor der Feldschwächungs-Kurve.</p>
+            </div>
+
+            <button id="btn-flash-mcu" class="btn btn-action">🔥 MCU Parameter Flashen</button>
+        </section>
+
+        <!-- Field Weakening Config -->
+        <section class="card">
+            <h2>Field Weakening Config</h2>
             <p class="card-desc">Erstelle SHU-kompatible params.json- oder SegwayWorld-.swcfg-Presets. Das Senden ist nur für bekannte, kompatible Firmware vorgesehen.</p>
-            <div class="toggle-row"><div><strong>FW CONTROL</strong><div class="sub-text">IQFW AKTIV</div></div><label class="switch"><input type="checkbox" id="iqfw-toggle"><span class="slider round"></span></label></div>
-            <div class="control-group"><div class="label-row"><label>FW STROM</label><span class="sub-label">AMPERE</span></div><input type="range" id="fw-amp-range" min="0" max="100" value="60"><div class="huge-display" id="fw-amp-val">60 A</div></div>
-            <div class="toggle-row"><div><strong>POWER OVERDRIVE</strong><div class="sub-text">IDFW AKTIV</div></div><label class="switch"><input type="checkbox" id="idfw-toggle"><span class="slider round"></span></label></div>
-            <div class="control-group"><div class="label-row"><label>FW CONTROL</label><span class="sub-label">STROM-CAP</span></div><input type="range" id="fw-cap-range" min="0" max="100" value="50"><div class="huge-display" id="fw-cap-val">50 A</div></div>
-            <div class="control-group"><div class="label-row"><label>FW CONTROL</label><span class="sub-label">FELDSCHWÄCH-STARTSPEED</span></div><input type="range" id="fw-startspeed-range" min="0" max="60" value="35"><div class="huge-display" id="fw-startspeed-val">35 km/h</div></div>
-            <div class="control-group"><div class="label-row"><label>FW CONTROL</label><span class="sub-label">STEIGUNG</span></div><input type="range" id="fw-ramp-range" min="0" max="1000" value="250"><div class="fw-steigung-box"><span class="fw-tag">FW CONTROL</span><span class="fw-subtag">FW STEIGUNG:</span><span class="fw-val-badge">250</span></div><div class="huge-display" id="fw-ramp-val">250 mA/km/h</div></div>
-            <div class="toggle-row"><div><strong>FW CONTROL</strong><div class="sub-text">OVERDRIVE AKTIV</div></div><label class="switch"><input type="checkbox" id="overdrive-toggle"><span class="slider round"></span></label></div>
-            <div class="control-group"><div class="label-row"><label>FW CONTROL</label><span class="sub-label">OVERDRIVE</span></div><input type="range" id="overdrive-range" min="0" max="100" value="95"><div class="huge-display" id="overdrive-val">95 %</div></div>
-            <div class="action-buttons-stack"><button class="btn btn-secondary">SHU exportieren (params.json)</button><button class="btn btn-secondary">App-Preset exportieren (.swcfg)</button><button class="btn btn-secondary">Preset laden</button><button class="btn btn-white">Preset anwenden</button></div>
+
+            <div class="toggle-row">
+                <div>
+                    <strong>FW CONTROL</strong>
+                    <div class="sub-text">IQFW AKTIV</div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="iqfw-toggle" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="control-group">
+                <div class="label-row">
+                    <label>FW STROM</label>
+                    <span class="sub-label">AMPERE</span>
+                </div>
+                <input type="range" id="fw-amp-range" min="0" max="100" value="60">
+                <div class="huge-display" id="fw-amp-val">60 A</div>
+            </div>
+
+            <div class="toggle-row">
+                <div>
+                    <strong>POWER OVERDRIVE</strong>
+                    <div class="sub-text">IDFW AKTIV</div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="idfw-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="control-group">
+                <div class="label-row">
+                    <label>FW CONTROL</label>
+                    <span class="sub-label">STROM-CAP</span>
+                </div>
+                <input type="range" id="fw-cap-range" min="0" max="100" value="50">
+                <div class="huge-display" id="fw-cap-val">50 A</div>
+            </div>
+
+            <div class="control-group">
+                <div class="label-row">
+                    <label>FW CONTROL</label>
+                    <span class="sub-label">FELDSCHWÄCH-STARTSPEED</span>
+                </div>
+                <input type="range" id="fw-startspeed-range" min="0" max="60" value="35">
+                <div class="huge-display" id="fw-startspeed-val">35 km/h</div>
+            </div>
+
+            <div class="control-group">
+                <div class="label-row">
+                    <label>FW CONTROL</label>
+                    <span class="sub-label">STEIGUNG</span>
+                </div>
+                <input type="range" id="fw-ramp-range" min="0" max="1000" value="250">
+                <div class="huge-display" id="fw-ramp-val">250 mA/km/h</div>
+            </div>
+
+            <div class="toggle-row">
+                <div>
+                    <strong>FW CONTROL</strong>
+                    <div class="sub-text">OVERDRIVE AKTIV</div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="overdrive-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="control-group">
+                <div class="label-row">
+                    <label>FW CONTROL</label>
+                    <span class="sub-label">OVERDRIVE</span>
+                </div>
+                <input type="range" id="overdrive-range" min="0" max="100" value="95">
+                <div class="huge-display" id="overdrive-val">95 %</div>
+            </div>
+
+            <div class="action-buttons-stack">
+                <button class="btn btn-secondary">SHU exportieren (params.json)</button>
+                <button class="btn btn-secondary">App-Preset exportieren (.swcfg)</button>
+                <button class="btn btn-secondary">Preset laden</button>
+                <button class="btn btn-white">Preset anwenden</button>
+            </div>
             <p class="warning-text">Hinweis: Field Weakening kann Motor, Akku und Controller beschädigen. Erst Simulation nutzen und nur bestätigte Werte senden.</p>
         </section>
 
-        <section class="card"><h2>Lichter & Custom Underglow</h2><p class="card-desc">Schnelle Lichtprofile für kompatible Roller. Änderungen bleiben bis zum nächsten Verbindungsaufbau lokal.</p><div class="checkbox-list"><label class="checkbox-item"><input type="checkbox" id="underglow-deck"><span>Underglow Deck-Licht</span></label><label class="checkbox-item"><input type="checkbox" id="front-bar"><span>Front Bar LED</span></label><label class="checkbox-item"><input type="checkbox" id="auto-beam" checked><span>Auto Beam Scheinwerfer</span></label></div></section>
+        <!-- FOC Matrix -->
+        <section class="card">
+            <h2>FOC (Field Oriented Control) Matrix</h2>
+            <p class="card-desc">Direkte Register-Matrixwerte (D0–D8) für die Inverter-Timing-Ansteuerung.</p>
 
-        <section class="card"><h2>Display / Tacho-Override</h2><p class="card-desc">Den anzuzeigenden Wert direkt an das Roller-Display senden.</p><div class="control-group"><div class="label-row"><label>Anzuzeigende Zahl</label><span id="tacho-val" class="val-display">88</span></div><input type="range" id="tacho-range" min="0" max="99" value="88"><p class="field-hint">Nur mit kompatiblen Ninebot-/Segway-Rollern und verfügbarer UART-Schnittstelle.</p></div><button id="btn-welcome-seq" class="btn btn-secondary">⚡ Welcome-Sequenz senden</button></section>
+            <div class="matrix-grid">
+                <div class="matrix-box"><span class="m-tag">D0</span><input type="text" value="1536"></div>
+                <div class="matrix-box"><span class="m-tag">D1</span><input type="text" value="2560"></div>
+                <div class="matrix-box"><span class="m-tag">D2</span><input type="text" value="5120"></div>
+                <div class="matrix-box"><span class="m-tag">D3</span><input type="text" value="1280"></div>
+                <div class="matrix-box"><span class="m-tag">D4</span><input type="text" value="537"></div>
+                <div class="matrix-box"><span class="m-tag">D5</span><input type="text" value="197"></div>
+                <div class="matrix-box"><span class="m-tag">D6</span><input type="text" value="235"></div>
+                <div class="matrix-box"><span class="m-tag">D7</span><input type="text" value="68"></div>
+                <div class="matrix-box"><span class="m-tag">D8</span><input type="text" value="12"></div>
+            </div>
+        </section>
 
-        <section class="card"><h2>Field Weakening (FW)</h2><p class="card-desc">Feldschwächungs-Strom für maximale Höchstgeschwindigkeit anpassen.</p><div class="control-group"><div class="label-row"><label for="iqfw-range">iqFW (Feldschwächungsstrom)</label><span id="iqfw-val" class="val-display">30 A</span></div><input type="range" id="iqfw-range" min="0" max="100" value="30"><p class="field-hint">Empfohlen: 25A - 35A für Standardmotoren. Werte über 40A bis 130A erfordern verstärkte Phasenstecker und Kühlung!</p></div><div class="control-group"><div class="label-row"><label for="engage-range">Engage Speed (Einsatz-Geschwindigkeit)</label><span id="engage-val" class="val-display">22 km/h</span></div><input type="range" id="engage-range" min="0" max="60" value="22"><p class="field-hint">Geschwindigkeitsschwelle, ab der Field Weakening aktiv eingreift.</p></div><div class="control-group"><div class="label-row"><label for="scale-range">Scale Multiplier (Ramp-up)</label><span id="scale-val" class="val-display">1200</span></div><input type="range" id="scale-range" min="100" max="3000" step="50" value="1200"><p class="field-hint">Intensitätsfaktor der Feldschwächungs-Kurve.</p></div><button id="btn-flash-mcu" class="btn btn-secondary">⚡ MCU Parameter Flashen</button></section>
+        <!-- Lichter & Custom Underglow -->
+        <section class="card">
+            <h2>Lichter & Custom Underglow</h2>
+            <p class="card-desc">Schnelle Lichtprofile für kompatible Roller. Änderungen bleiben bis zum nächsten Verbindungsaufbau lokal.</p>
 
-        <section class="card"><h2>FOC (Field Oriented Control) Matrix</h2><p class="card-desc">Direkte Register-Matrixwerte (D0–D8) für die Inverter-Timing-Ansteuerung.</p><div class="matrix-grid"><div class="matrix-box"><span class="m-tag">D0</span><input type="text" value="1536"></div><div class="matrix-box"><span class="m-tag">D1</span><input type="text" value="2560"></div><div class="matrix-box"><span class="m-tag">D2</span><input type="text" value="5120"></div><div class="matrix-box"><span class="m-tag">D3</span><input type="text" value="1280"></div><div class="matrix-box"><span class="m-tag">D4</span><input type="text" value="537"></div><div class="matrix-box"><span class="m-tag">D5</span><input type="text" value="197"></div><div class="matrix-box"><span class="m-tag">D6</span><input type="text" value="235"></div><div class="matrix-box"><span class="m-tag">D7</span><input type="text" value="68"></div><div class="matrix-box"><span class="m-tag">D8</span><input type="text" value="12"></div></div><p class="field-hint" style="margin-top: 15px;">Änderungen werden erst beim Anwenden übertragen.</p><button class="btn btn-secondary" style="margin-top: 10px;">Matrix anwenden</button></section>
+            <div class="checkbox-list">
+                <label class="checkbox-item">
+                    <input type="checkbox" id="underglow-deck">
+                    <span>Underglow Deck-Licht</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" id="front-bar">
+                    <span>Front Bar LED</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" id="auto-beam" checked>
+                    <span>Auto Beam Scheinwerfer</span>
+                </label>
+            </div>
+        </section>
 
-        <section class="card"><h2>Field Weakening Settings</h2><p class="card-desc">Öffne die FW-Regler und Presets für IQFW, IDFW und Overdrive.</p><div class="action-buttons-stack"><button class="btn btn-secondary">FW-Einstellungen öffnen</button><button class="btn btn-secondary">Neuer Link</button></div></section>
-        <section class="card"><h2>SegwayWorld Preset Generator</h2><p class="card-desc">Exportiere ein SHU/Kukai-kompatibles ZIP mit params.json oder lade ein bestehendes ZIP-, JSON- oder SWCFG-Preset.</p><div class="action-buttons-stack"><button class="btn btn-secondary">Preset für SHU exportieren (.zip)</button><button class="btn btn-secondary">Preset / ZIP laden</button><button class="btn btn-secondary">FW direkt per Bluetooth flashen</button></div></section>
+        <!-- Display / Tacho-Override -->
+        <section class="card">
+            <h2>Display / Tacho-Override</h2>
+            <p class="card-desc">Den anzuzeigenden Wert direkt an das Roller-Display senden.</p>
+
+            <div class="control-group">
+                <div class="label-row">
+                    <label>Anzuzeigende Zahl</label>
+                    <span id="tacho-val" class="val-display">88</span>
+                </div>
+                <input type="range" id="tacho-range" min="0" max="99" value="88">
+                <p class="field-hint">Nur mit kompatiblen Ninebot-/Segway-Rollern und verfügbarer UART-Schnittstelle.</p>
+            </div>
+
+            <button id="btn-welcome-seq" class="btn btn-secondary">⚡ Welcome-Sequenz senden</button>
+        </section>
+
+        <!-- Fahr-Modi -->
+        <section class="card">
+            <h2>Fahr-Modi Speed Limit</h2>
+            <p class="card-desc">Für öffentliche Straßen gelten weiterhin die gesetzlichen Grenzen.</p>
+
+            <div class="modes-grid">
+                <div class="mode-box"><span>Normal</span> <strong>25 km/h</strong></div>
+                <div class="mode-box"><span>Eco</span> <strong>15 km/h</strong></div>
+                <div class="mode-box"><span>Sport</span> <strong>20 km/h</strong></div>
+                <div class="mode-box"><span>Fußgänger</span> <strong>5 km/h</strong></div>
+            </div>
+        </section>
+
+        <!-- Sicherheitsmodi -->
+        <section class="card">
+            <h2>Sicherheitsmodi</h2>
+            <p class="card-desc">Reversible Sicherheitsfunktionen für Diagnose und Privatgelände.</p>
+
+            <div class="checkbox-list">
+                <label class="checkbox-item">
+                    <input type="checkbox" id="police-mode">
+                    <span>Police Mode (Legal Speed)</span>
+                </label>
+            </div>
+
+            <div class="panic-block">
+                <button id="btn-panic" class="btn btn-alert">⚠️ Panik Button</button>
+                <p class="card-desc">Der Panik-Button setzt den sicheren Eco-Modus und Police Mode lokal sofort zurück.</p>
+            </div>
+
+            <div class="panic-block">
+                <h3>Panik Button</h3>
+                <p class="field-hint">Erster Druck aktiviert den Police Mode. Wähle danach zwischen den begrenzten Panik-Fahrmodi. Zweiter Druck schaltet alles wieder aus.</p>
+                <button class="btn btn-secondary">Panik Button — deaktiviert</button>
+            </div>
+        </section>
+
+        <!-- Simulation & Terminal -->
+        <section class="card">
+            <h2>SegwayWorld Demo / Simulations-Modus</h2>
+            <p class="card-desc">Teste alle Regler ohne physischen Roller.</p>
+            <button id="btn-sim" class="btn btn-secondary">Simulation aktivieren</button>
+
+            <div class="terminal-container">
+                <h3>Terminal & Raw BLE</h3>
+                <p class="card-desc">Diagnoseausgaben und gesendete Bluetooth-Kmandos.</p>
+                <div id="terminal-out" class="terminal-box">
+                    <div>01 [system] SegwayWorld Core v1.4.0 bereit</div>
+                    <div>02 [info] Simulation aktiv - keine Hardware verbunden</div>
+                    <div>03 [action] SegwayWorld-Preset exportiert</div>
+                </div>
+                <button id="btn-clear-term" class="btn btn-secondary">Terminal leeren</button>
+            </div>
+        </section>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
